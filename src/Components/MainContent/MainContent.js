@@ -15,7 +15,9 @@ const MainContent = ({
       <Card.Body>
         <Card.Text style={{ display: "flex", justifyContent: "space-around" }}>
           <span>{hours}</span>
+          <span>:</span>
           <span>{minutes}</span>
+          <span>:</span>
           <span>{seconds}</span>
         </Card.Text>
         <div style={{ display: "flex", justifyContent: "space-between" }}>

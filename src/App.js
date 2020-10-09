@@ -41,9 +41,9 @@ class App extends Component {
       <>
         <Navbar />
         <MainContent
-          seconds={this.state.seconds}
-          minutes={this.state.minutes}
-          hours={this.state.hours}
+          seconds={this.state.seconds<10?"0"+this.state.seconds : this.state.seconds}
+          minutes={this.state.minutes<10 ? "0"+this.state.minutes : this.state.minutes}
+          hours={this.state.hours<10 ? "0"+this.state.hours : this.state.hours}
           start={this.state.start}
           startClick={this.startClick}
           resetClick={this.resetClick}
