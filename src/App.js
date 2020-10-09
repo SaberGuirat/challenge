@@ -11,22 +11,30 @@ class App extends Component {
     start: "Start",
   };
   startClick = () => {
-    this.setState({start : "stop"})
-    setInterval(
-      () => this.setState({ seconds: this.state.seconds + 1}),
-      1000
-    );
-    if(this.state.seconds==60){setInterval(
-      () => this.setState({ minutes: this.state.minutes + 1 }),
-      1000
-    );}
+    if (this.state.start === "Start") {
+      this.setState({ start: "Stop" });
+      this.timerID = setInterval(() => {
+        this.setState({ seconds: this.state.seconds + 1 });
+        if (this.state.seconds === 59) {
+          this.setState({ minutes: this.state.minutes + 1, seconds: 0 });
+        }
+        if (this.state.seconds === 59 && this.state.minutes === 59) {
+          this.setState({
+            hours: this.state.hours + 1,
+            minutes: 0,
+            seconds: 0,
+          });
+        }
+      }, 1000);
+    } else {
+      this.setState({ start: "Start" });
+      clearInterval(this.timerID);
+    }
   };
-  resetClick = () =>
-    this.setState({
-      seconds: 0,
-      minutes: 0,
-      hours: 0,
-    });
+  resetClick = () => {
+    this.setState({ seconds: 0, minutes: 0, hours: 0, start: "Start" });
+    clearInterval(this.timerID);
+  };
 
   render() {
     return (
